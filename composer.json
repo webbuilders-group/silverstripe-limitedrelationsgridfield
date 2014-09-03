@@ -1,0 +1,23 @@
+{
+    "name": "webbuilders-group/silverstripe-limitedrelationsgridfield",
+    "description": "Adds the ability to limit the number of items in the relationship managed by GridField.",
+    "type": "silverstripe-module",
+    "keywords": ["silverstripe", "github", "shortcode"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Ed Chipman",
+            "homepage": "http://webbuildersgroup.com",
+            "role": "Developer"
+        }
+    ],
+
+    "require":
+    {
+        "silverstripe/framework": "3.1.*",
+        "composer/installers": "*"
+    },
+    "support": {
+        "issues": "https://github.com/webbuilders-group/silverstripe-limitedrelationsgridfield/issues"
+    }
+}
