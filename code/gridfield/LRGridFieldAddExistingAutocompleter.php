@@ -1,5 +1,6 @@
 <?php
-class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocompleter {
+class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocompleter
+{
     protected $_item_limit=null;
     
     /**
@@ -9,7 +10,8 @@ class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocomple
      * @param {int} $limit Number of items to limit the gridfield's relationship to
      * @return {LRGridFieldAddExistingAutocompleter} Returns self
      */
-    public function __construct($targetFragment='before', $searchFields=null, $itemLimit=null) {
+    public function __construct($targetFragment='before', $searchFields=null, $itemLimit=null)
+    {
         $this->_item_limit=$itemLimit;
         
         parent::__construct($targetFragment, $searchFields);
@@ -22,18 +24,19 @@ class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocomple
      * @param SS_List $dataList
      * @return SS_List
      */
-    public function getManipulatedData(GridField $gridField, SS_List $dataList) {
-        if(!$gridField->State->GridFieldAddRelation) {
+    public function getManipulatedData(GridField $gridField, SS_List $dataList)
+    {
+        if (!$gridField->State->GridFieldAddRelation) {
             return $dataList;
         }
         
         $objectID=Convert::raw2sql($gridField->State->GridFieldAddRelation);
-        if($objectID) {
+        if ($objectID) {
             $object=DataObject::get_by_id($dataList->dataclass(), $objectID);
-            if($object) {
-                if($this->_item_limit>0 && $dataList->count()+1>$this->_item_limit) {
+            if ($object) {
+                if ($this->_item_limit>0 && $dataList->count()+1>$this->_item_limit) {
                     $gridField->getForm()->getController()->getResponse()->addHeader('X-Status', _t('LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', array('count'=>$this->_item_limit)));
-                }else {
+                } else {
                     $dataList->add($object);
                 }
             }
@@ -48,7 +51,8 @@ class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocomple
      * @param {int} $limit Number of items to limit the gridfield's relationship to
      * @return {LRGridFieldAddExistingAutocompleter} Returns self
      */
-    public function setItemLimit($limit) {
+    public function setItemLimit($limit)
+    {
         $this->_item_limit=$limit;
         
         return $this;
@@ -58,8 +62,8 @@ class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocomple
      * Gets the number of items limited to
      * @return {int} Number of items the gridfield's relationship is limited to
      */
-    public function getItemLimit() {
+    public function getItemLimit()
+    {
         return $this->_item_limit;
     }
 }
-?>

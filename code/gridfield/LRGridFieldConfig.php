@@ -1,6 +1,8 @@
 <?php
-class LRGridFieldConfig_RelationEditor extends GridFieldConfig_RelationEditor {
-    public function __construct($itemsPerPage=null, $numberToLimitTo=null) {
+class LRGridFieldConfig_RelationEditor extends GridFieldConfig_RelationEditor
+{
+    public function __construct($itemsPerPage=null, $numberToLimitTo=null)
+    {
         parent::__construct($itemsPerPage);
         
         $this->removeComponentsByType('GridFieldAddExistingAutocompleter');
@@ -11,8 +13,10 @@ class LRGridFieldConfig_RelationEditor extends GridFieldConfig_RelationEditor {
     }
 }
 
-class LRGridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor {
-    public function __construct($itemsPerPage=null, $numberToLimitTo=null) {
+class LRGridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor
+{
+    public function __construct($itemsPerPage=null, $numberToLimitTo=null)
+    {
         parent::__construct($itemsPerPage);
         
         
@@ -20,4 +24,3 @@ class LRGridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor {
         $this->addComponent(new LRGridFieldDetailForm('DetailForm', $numberToLimitTo));
     }
 }
-?>
