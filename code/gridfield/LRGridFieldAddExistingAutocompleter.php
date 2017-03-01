@@ -32,7 +32,7 @@ class LRGridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocomple
             $object=DataObject::get_by_id($dataList->dataclass(), $objectID);
             if($object) {
                 if($this->_item_limit>0 && $dataList->count()+1>$this->_item_limit) {
-                    $gridField->getForm()->getController()->getResponse()->addHeader('X-Status', _t('LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', array('count'=>$this->_item_limit)));
+                    Controller::curr()->getResponse()->addHeader('X-Status', _t('LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', array('count'=>$this->_item_limit)));
                 }else {
                     $dataList->add($object);
                 }
