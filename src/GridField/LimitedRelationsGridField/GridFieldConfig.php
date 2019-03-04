@@ -1,23 +1,31 @@
 <?php
-class LRGridFieldConfig_RelationEditor extends GridFieldConfig_RelationEditor {
+namespace WebbuildersGroup\LimitedRelationsGridField;
+
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+use SilverStripe\Forms\GridField\GridFieldDetailForm;
+use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+
+
+class GridFieldConfig_RelationEditor extends GridFieldConfig_RelationEditor {
     public function __construct($itemsPerPage=null, $numberToLimitTo=null) {
         parent::__construct($itemsPerPage);
         
-        $this->removeComponentsByType('GridFieldAddExistingAutocompleter');
-        $this->addComponent(new LRGridFieldAddExistingAutocompleter('buttons-before-right', null, $numberToLimitTo));
+        $this->removeComponentsByType(GridFieldAddExistingAutocompleter::class);
+        $this->addComponent(new GridFieldAddExistingAutocompleter('buttons-before-right', null, $numberToLimitTo));
         
-        $this->removeComponentsByType('GridFieldDetailForm');
-        $this->addComponent(new LRGridFieldDetailForm('DetailForm', $numberToLimitTo));
+        $this->removeComponentsByType(GridFieldDetailForm::class);
+        $this->addComponent(new GridFieldDetailForm('DetailForm', $numberToLimitTo));
     }
 }
 
-class LRGridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor {
+class GridFieldConfig_RecordEditor extends GridFieldConfig_RecordEditor {
     public function __construct($itemsPerPage=null, $numberToLimitTo=null) {
         parent::__construct($itemsPerPage);
         
         
-        $this->removeComponentsByType('GridFieldDetailForm');
-        $this->addComponent(new LRGridFieldDetailForm('DetailForm', $numberToLimitTo));
+        $this->removeComponentsByType(GridFieldDetailForm::class);
+        $this->addComponent(new GridFieldDetailForm('DetailForm', $numberToLimitTo));
     }
 }
 ?>

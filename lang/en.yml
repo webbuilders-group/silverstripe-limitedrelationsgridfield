@@ -1,3 +1,3 @@
 en:
-    LimitedRelationsGridField:
+    WebbuildersGroup\LimitedRelationsGridField\LimitedRelationsGridField:
         ITEM_LIMIT_REACHED: "You cannot add any more items, you can only add {count} items. Please remove one then try again."
