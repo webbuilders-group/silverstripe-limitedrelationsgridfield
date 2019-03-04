@@ -1,9 +1,7 @@
 <?php
 namespace WebbuildersGroup\LimitedRelationsGridField;
 
-use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
 use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor as SS_GridFieldConfig_RelationEditor;
-use SilverStripe\Forms\GridField\GridFieldDetailForm;
 
 
 class GridFieldConfig_RelationEditor extends  SS_GridFieldConfig_RelationEditor {

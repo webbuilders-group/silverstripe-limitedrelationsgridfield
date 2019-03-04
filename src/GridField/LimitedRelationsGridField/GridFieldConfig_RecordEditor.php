@@ -2,7 +2,6 @@
 namespace WebbuildersGroup\LimitedRelationsGridField;
 
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor as SS_GridFieldConfig_RecordEditor;
-use SilverStripe\Forms\GridField\GridFieldDetailForm;
 
 
 class GridFieldConfig_RecordEditor extends SS_GridFieldConfig_RecordEditor {
