@@ -1,7 +1,7 @@
 {
     "name": "webbuilders-group/silverstripe-limitedrelationsgridfield",
     "description": "Adds the ability to limit the number of items in the relationship managed by GridField.",
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "keywords": ["silverstripe", "gridfield", "relationship"],
     "license": "BSD-3-Clause",
     "authors": [

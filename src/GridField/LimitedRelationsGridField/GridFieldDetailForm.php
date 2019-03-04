@@ -1,13 +1,10 @@
 <?php
 namespace WebbuildersGroup\LimitedRelationsGridField;
 
-use SilverStripe\Forms\GridField\GridFieldDetailForm;
-use SilverStripe\Control\PjaxResponseNegotiator;
-use SilverStripe\Control\Controller;
-use SilverStripe\Forms\GridField\GridFieldDetailForm_ItemRequest;
+use SilverStripe\Forms\GridField\GridFieldDetailForm as SS_GridFieldDetailForm;
 
 
-class GridFieldDetailForm extends GridFieldDetailForm {
+class GridFieldDetailForm extends SS_GridFieldDetailForm {
     protected $itemRequestClass=GridFieldDetailForm_ItemRequest::class;
     protected $_item_limit=null;
     
@@ -38,31 +35,6 @@ class GridFieldDetailForm extends GridFieldDetailForm {
      */
     public function getItemLimit() {
         return $this->_item_limit;
-    }
-}
-
-class GridFieldDetailForm_ItemRequest extends GridFieldDetailForm_ItemRequest {
-    public function doSave($data, $form) {
-        if($this->record->ID==0 && $this->component instanceof GridFieldDetailForm && $this->component->getItemLimit()>0 && $this->gridField->getList()->count()+1>$this->component->getItemLimit()) {
-            $form->sessionMessage(_t('WebbuildersGroup\\LimitedRelationsGridField\\LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', array('count'=>$this->component->getItemLimit())), 'bad');
-            $responseNegotiator=new PjaxResponseNegotiator(array(
-                                                                'CurrentForm'=>function() use(&$form) {
-                                                                    return $form->forTemplate();
-                                                                },
-                                                                'default'=>function() use(&$controller) {
-                                                                    return $controller->redirectBack();
-                                                                }
-                                                            ));
-            
-            $controller=Controller::curr();
-            if($controller->getRequest()->isAjax()){
-                $controller->getRequest()->addHeader('X-Pjax', 'CurrentForm');
-            }
-            
-            return $responseNegotiator->respond($controller->getRequest());
-        }
-        
-        return parent::doSave($data, $form);
     }
 }
 ?>

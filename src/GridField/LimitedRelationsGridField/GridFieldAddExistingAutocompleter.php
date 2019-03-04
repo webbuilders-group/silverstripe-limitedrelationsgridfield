@@ -1,15 +1,15 @@
 <?php
 namespace WebbuildersGroup\LimitedRelationsGridField;
 
-use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\ORM\SS_List;
-use SilverStripe\Core\Convert;
-use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\Controller;
-use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter as SS_GridFieldAddExistingAutocompleter;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\SS_List;
 
 
-class GridFieldAddExistingAutocompleter extends GridFieldAddExistingAutocompleter {
+class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompleter {
     protected $_item_limit=null;
     
     /**
