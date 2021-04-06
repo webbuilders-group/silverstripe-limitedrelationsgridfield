@@ -1,5 +1,8 @@
 # Change Log
 
+## [2.0.1](https://github.com/webbuilders-group/silverstripe-limitedrelationsgridfield/tree/2.0.1) (2021-04-06)
+[Full Changelog](https://github.com/webbuilders-group/silverstripe-limitedrelationsgridfield/compare/2.0.0...2.0.1)
+
 ## [2.0.0](https://github.com/webbuilders-group/silverstripe-limitedrelationsgridfield/tree/2.0.0) (2019-03-04)
 [Full Changelog](https://github.com/webbuilders-group/silverstripe-limitedrelationsgridfield/compare/1.0.0...2.0.0)
 

@@ -8,10 +8,10 @@ use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter as SS_GridFie
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\SS_List;
 
+class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompleter
+{
+    protected $_item_limit = null;
 
-class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompleter {
-    protected $_item_limit=null;
-    
     /**
      * Sets the number of items to limit to
      * @param string $targetFragment Fragment to place the component in
@@ -19,12 +19,13 @@ class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompl
      * @param int $limit Number of items to limit the gridfield's relationship to
      * @return GridFieldAddExistingAutocompleter Returns self
      */
-    public function __construct($targetFragment='before', $searchFields=null, $itemLimit=null) {
-        $this->_item_limit=$itemLimit;
-        
+    public function __construct($targetFragment = 'before', $searchFields = null, $itemLimit = null)
+    {
+        $this->_item_limit = $itemLimit;
+
         parent::__construct($targetFragment, $searchFields);
     }
-    
+
     /**
      * If an object ID is set, add the object to the list
      *
@@ -32,44 +33,46 @@ class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompl
      * @param SS_List $dataList
      * @return SS_List
      */
-    public function getManipulatedData(GridField $gridField, SS_List $dataList) {
-        if(!$gridField->State->GridFieldAddRelation) {
+    public function getManipulatedData(GridField $gridField, SS_List $dataList)
+    {
+        if (!$gridField->State->GridFieldAddRelation) {
             return $dataList;
         }
-        
+
         $objectID=Convert::raw2sql($gridField->State->GridFieldAddRelation);
-        if($objectID) {
-            $object=DataObject::get_by_id($dataList->dataclass(), $objectID);
-            if($object) {
-                if($this->_item_limit>0 && $dataList->count()+1>$this->_item_limit) {
-                    Controller::curr()->getResponse()->addHeader('X-Status', _t('WebbuildersGroup\\LimitedRelationsGridField\\LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', array('count'=>$this->_item_limit)));
-                }else {
+        if ($objectID) {
+            $object = DataObject::get_by_id($dataList->dataclass(), $objectID);
+            if ($object) {
+                if ($this->_item_limit>0 && $dataList->count() + 1 > $this->_item_limit) {
+                    Controller::curr()->getResponse()->addHeader('X-Status', _t('WebbuildersGroup\\LimitedRelationsGridField\\LimitedRelationsGridField.ITEM_LIMIT_REACHED', '_You cannot add any more items, you can only add {count} items. Please remove one then try again.', ['count' => $this->_item_limit]));
+                } else {
                     $dataList->add($object);
                 }
             }
         }
-        
-        $gridField->State->GridFieldAddRelation=null;
+
+        $gridField->State->GridFieldAddRelation = null;
         return $dataList;
     }
-    
+
     /**
      * Sets the number of items to limit to
      * @param int $limit Number of items to limit the gridfield's relationship to
      * @return GridFieldAddExistingAutocompleter Returns self
      */
-    public function setItemLimit($limit) {
-        $this->_item_limit=$limit;
-        
+    public function setItemLimit($limit)
+    {
+        $this->_item_limit = $limit;
+
         return $this;
     }
-    
+
     /**
      * Gets the number of items limited to
      * @return int Number of items the gridfield's relationship is limited to
      */
-    public function getItemLimit() {
+    public function getItemLimit()
+    {
         return $this->_item_limit;
     }
 }
-?>
