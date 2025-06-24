@@ -5,8 +5,8 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter as SS_GridFieldAddExistingAutocompleter;
+use SilverStripe\Model\List\SS_List;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\SS_List;
 
 class GridFieldAddExistingAutocompleter extends SS_GridFieldAddExistingAutocompleter
 {

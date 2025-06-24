@@ -6,7 +6,7 @@ Adds the ability to limit the number of items in the relationship managed by Gri
 * Ed Chipman ([UndefinedOffset](https://github.com/UndefinedOffset))
 
 ## Requirements
-* SilverStripe CMS 4.2+
+* SilverStripe CMS ~6.0
 
 
 ## Installation
